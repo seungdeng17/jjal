@@ -20,7 +20,7 @@ export type File = {
 export const uploadImageFile = async (file: File) => {
   try {
     const type = file?.type.match(/png|jpg|jpeg|gif/);
-    if (!type) throw new Error('확장자가 올바르지 않습니다.');
+    if (!type) throw new Error('파일이 올바르지 않습니다.');
     const key = `${uuidv4()}.${type[0]}`;
 
     await new AWS.S3.ManagedUpload({
