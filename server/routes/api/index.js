@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const controller = require('./api.controller');
 
-// [GET] sample
-router.get('/sample', controller.sample);
+// [POST] 이미지 등록 요청
+router.post('/image', controller.image);
 
 module.exports = router;

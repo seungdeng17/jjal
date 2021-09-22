@@ -1,3 +1,17 @@
+import { useRef } from 'react';
+import { uploadImageFile, File } from '@util/aws';
+
 export default function Header() {
-  return <div>헤더</div>;
+  const imageFileRef = useRef<File>();
+  const handleFileInput = (e: any) => (imageFileRef.current = e.target.files[0]);
+  const handleUploadImage = () => uploadImageFile(imageFileRef.current as File, []);
+
+  return (
+    <div>
+      <input type="file" accept=".gif,.jpg,.jpeg,.png" onChange={handleFileInput} />
+      <button type="button" onClick={handleUploadImage}>
+        이미지 전송
+      </button>
+    </div>
+  );
 }
