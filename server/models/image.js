@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const imageSchema = new mongoose.Schema({
   tag: String,
-  liked_cnt: Number,
-  liked_ip: String,
+  like_cnt: Number,
+  like_ip: String,
   image_url: String,
   date: Date,
 });
