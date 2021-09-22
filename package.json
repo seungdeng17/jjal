@@ -1,0 +1,38 @@
+{
+  "name": "react-boilerplate",
+  "version": "2.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "cd server && yarn start",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "build": "cd client && yarn build",
+    "sync": "rm -rf ./dist && mv ./client/dist ./",
+    "prod": "yarn build && yarn sync",
+    "proxy": "concurrently --kill-others-on-fail \"node proxy-server.js\" \"yarn server\"",
+    "sb": "cd client && yarn sb",
+    "sb-build": "cd client && yarn sb-build",
+    "clean": "rm -rf ./dist && cd client && yarn clean",
+    "initialize": "yarn && node ./.initialize.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seungdeng17/react-boilerplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seungdeng17/react-boilerplate/issues"
+  },
+  "homepage": "https://github.com/seungdeng17/react-boilerplate#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^2.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "shelljs": "^0.8.4"
+  }
+}
