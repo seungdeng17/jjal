@@ -18,7 +18,9 @@ export type File = {
   webkitRelativePath: string;
 };
 
-export const uploadImageFile = async (file: File) => {
+export type Tags = String[];
+
+export const uploadImageFile = async (file: File, tags: Tags) => {
   try {
     const type = file?.type.match(/png|jpg|jpeg|gif/);
     if (!type) throw new Error('파일이 올바르지 않습니다.');
@@ -35,7 +37,7 @@ export const uploadImageFile = async (file: File) => {
     const { isSuccess, resultCode } = await request({
       url: '/image',
       method: 'post',
-      params: { key: data.Key, image_url: data.Location },
+      data: { key: data.Key, image_url: data.Location, tag: tags },
     });
     if (!isSuccess) throw new Error(`error code: ${resultCode}`);
     alert('이미지 업로드에 성공했습니다.');
