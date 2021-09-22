@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
 const imageSchema = new mongoose.Schema({
-  tag: String,
-  like_cnt: Number,
-  like_ip: String,
+  key: String,
   image_url: String,
+  tag: Array,
+  like_cnt: Number,
+  like_ip: Array,
+  accept: Boolean,
   date: Date,
 });
 
