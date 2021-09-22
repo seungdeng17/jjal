@@ -37,8 +37,9 @@ export const uploadImageFile = async (file: File, tags: Tags) => {
     const { isSuccess, resultCode } = await request({
       url: '/image',
       method: 'post',
-      data: { key: data.Key, image_url: data.Location, tag: tags },
+      body: { key: data.Key, image_url: data.Location, tag: tags },
     });
+
     if (!isSuccess) throw new Error(`error code: ${resultCode}`);
     alert('이미지 업로드에 성공했습니다.');
   } catch (e) {

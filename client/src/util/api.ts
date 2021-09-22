@@ -26,34 +26,31 @@ type RequestArgs = {
     | 'UNLINK'
     | undefined;
   params?: { [key: string]: string };
-  data?: any;
+  body?: any;
 };
 
-type Result = {
+type RequestResult = {
   isSuccess: boolean;
   resultCode: number;
   data?: any;
 };
 
-type RequestResult = Promise<Result> | Result;
-
-export function request({ url, method = 'get', params, data }: RequestArgs): RequestResult {
+export const request = async ({ url, method = 'get', params, body }: RequestArgs): Promise<RequestResult> => {
   try {
-    return axios({
+    const response = await axios({
       baseURL: API_HOST,
       withCredentials: true,
       url,
       method,
       params,
-      data,
-    }).then((response) => {
-      const { resultCode, data } = response.data;
-      return {
-        isSuccess: resultCode === RESULT_CODE.SUCCESS,
-        resultCode,
-        data,
-      };
+      data: body,
     });
+    const { resultCode, data } = response.data;
+    return {
+      isSuccess: resultCode === RESULT_CODE.SUCCESS,
+      resultCode,
+      data,
+    };
   } catch (e) {
     alert(`에러가 발생했습니다. ${e.message}`);
     return {
@@ -61,4 +58,4 @@ export function request({ url, method = 'get', params, data }: RequestArgs): Req
       resultCode: -1,
     };
   }
-}
+};
