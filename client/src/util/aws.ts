@@ -20,7 +20,7 @@ export type File = {
 
 export type Tags = String[];
 
-export const uploadImageFile = async (file: File, tags: Tags) => {
+export const uploadImageFile = async (file: File, tags: Tags = []) => {
   try {
     const type = file?.type.match(/png|jpg|jpeg|gif/);
     if (!type) throw new Error('파일이 올바르지 않습니다.');
