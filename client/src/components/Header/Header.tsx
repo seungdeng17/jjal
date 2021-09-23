@@ -3,7 +3,7 @@ import { uploadImageFile, File } from '@util/aws';
 
 export default function Header() {
   const imageFileRef = useRef<File>();
-  const handleFileInput = (e: any) => (imageFileRef.current = e.target.files[0]);
+  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => (imageFileRef.current = e.target.files?.[0]);
   const handleUploadImage = () => uploadImageFile(imageFileRef.current as File);
 
   return (
