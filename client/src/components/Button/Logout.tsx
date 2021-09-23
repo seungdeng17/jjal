@@ -4,11 +4,11 @@ import { loginState, adminState } from '@/store/login';
 
 export default function Logout() {
   const setIsLogin = useSetRecoilState(loginState);
-  const setIsAdmin = useSetRecoilState(adminState);
+  const setAdminInfo = useSetRecoilState(adminState);
 
   const onLogoutSuccess = () => {
     setIsLogin(false);
-    setIsAdmin(false);
+    setAdminInfo(null);
     window.location.reload();
   };
 

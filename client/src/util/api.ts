@@ -52,7 +52,7 @@ export const request = async ({ url, method = 'get', params, body }: RequestArgs
       data,
     };
   } catch (e) {
-    alert(`에러가 발생했습니다. ${e.message}`);
+    alert(`통신 에러가 발생했습니다. ${e.message}`);
     return {
       isSuccess: false,
       resultCode: -1,
