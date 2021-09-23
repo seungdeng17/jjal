@@ -11,7 +11,7 @@ AWS.config.update({
 
 export type File = {
   lastModified: number;
-  lastModifiedDate?: {};
+  lastModifiedDate?: Date;
   name: string;
   size: number;
   type: string;
