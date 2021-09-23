@@ -35,7 +35,7 @@ export const uploadImageFile = async (file: File, tags: Tags = []) => {
     }).promise();
 
     const { isSuccess, resultCode } = await request({
-      url: '/image',
+      url: '/temp-image',
       method: 'post',
       body: { key: data.Key, image_url: data.Location, tag: tags },
     });

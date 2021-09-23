@@ -6,7 +6,6 @@ const imageSchema = new mongoose.Schema({
   tag: Array,
   like_cnt: Number,
   like_ip: Array,
-  accept: Boolean,
   date: Date,
 });
 
