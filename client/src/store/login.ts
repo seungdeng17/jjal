@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-type AdminInfo = {
+export type AdminInfo = {
   email: string;
   token: string;
 };
