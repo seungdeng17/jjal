@@ -12,17 +12,19 @@ export default function Login() {
     if (!profileObj || !tokenObj) return alert(`로그인 실패! ${res.code}`);
     setIsLogin(true);
 
-    const admins = process.env.REACT_APP_ADMINS;
-    if (!admins?.split(',').includes(profileObj.email)) return;
+    const { email } = profileObj;
+    const { access_token } = tokenObj;
+    const admins = process.env.REACT_APP_ADMINS?.split(',');
+    if (!admins?.includes(email)) return;
 
     const { isSuccess } = await request({
       url: '/admin/login',
       method: 'PUT',
-      body: { email: profileObj.email, token: tokenObj.access_token },
+      body: { email, token: access_token },
     });
     if (!isSuccess) return alert('어드민 권한 획득에 실패했습니다.');
 
-    setAdminInfo({ email: profileObj.email, token: tokenObj.access_token });
+    setAdminInfo({ email, token: access_token });
   };
 
   return (
