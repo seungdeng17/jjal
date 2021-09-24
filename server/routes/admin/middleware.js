@@ -1,4 +1,4 @@
-const Admin = require('../../models/admin');
+const Admin = require('../../model/admin');
 
 const adminMiddleware = async (req, res, next) => {
   const email = req.query.email;

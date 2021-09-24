@@ -1,4 +1,4 @@
-const Admin = require('../../models/admin');
+const Admin = require('../../model/admin');
 
 // [PUT] 어드민 로그인
 exports.login = async (req, res) => {

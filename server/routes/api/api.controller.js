@@ -1,4 +1,4 @@
-const TempImage = require('../../models/tempImage');
+const TempImage = require('../../model/tempImage');
 
 // [POST] 임시 이미지 등록 요청
 exports.tempImage = async (req, res) => {
