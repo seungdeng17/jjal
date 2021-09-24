@@ -19,7 +19,7 @@ export default function Login() {
 
     const { isSuccess } = await request({
       url: '/admin/login',
-      method: 'PUT',
+      method: 'POST',
       params: { email, token: access_token },
     });
     if (!isSuccess) return alert('어드민 권한 획득에 실패했습니다.');
