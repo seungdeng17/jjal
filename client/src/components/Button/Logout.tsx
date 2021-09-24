@@ -2,6 +2,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { GoogleLogout } from 'react-google-login';
 import { loginState, adminState, AdminInfo } from '@/store/login';
 import { request } from '@util/api';
+import { ADMIN_SESSION_TOKEN } from '@constant/token';
 
 export default function Logout() {
   const setIsLogin = useSetRecoilState(loginState);
@@ -9,13 +10,14 @@ export default function Logout() {
 
   const onLogoutSuccess = async () => {
     if (adminInfo) {
-      const { email, token } = adminInfo as AdminInfo;
+      const { email } = adminInfo as AdminInfo;
       const { isSuccess } = await request({
         url: '/admin/logout',
         method: 'POST',
-        params: { email, token },
+        body: { email },
       });
       if (!isSuccess) return alert('로그아웃을 다시 시도해주세요.');
+      sessionStorage.removeItem(ADMIN_SESSION_TOKEN);
     }
 
     setIsLogin(false);

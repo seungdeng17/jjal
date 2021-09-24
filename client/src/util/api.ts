@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_HOST, RESULT_CODE } from '@constant/fetch';
+import { ADMIN_SESSION_TOKEN } from '@constant/token';
 
 type RequestArgs = {
   url: string;
@@ -25,8 +26,9 @@ type RequestArgs = {
     | 'unlink'
     | 'UNLINK'
     | undefined;
+  headers?: { [key: string]: string };
   params?: { [key: string]: string };
-  body?: any;
+  body?: { [key: string]: any };
 };
 
 type RequestResult = {
@@ -35,17 +37,28 @@ type RequestResult = {
   data?: any;
 };
 
-export const request = async ({ url, method = 'get', params, body }: RequestArgs): Promise<RequestResult> => {
+export const request = async ({
+  url,
+  method = 'get',
+  headers = {},
+  params,
+  body,
+}: RequestArgs): Promise<RequestResult> => {
+  const token = sessionStorage.getItem(ADMIN_SESSION_TOKEN);
+  if (token) headers['x-access-token'] = token;
+
   try {
-    const response = await axios({
+    const res = await axios({
       baseURL: API_HOST,
       withCredentials: true,
       url,
       method,
+      headers,
       params,
       data: body,
     });
-    const { resultCode, data } = response.data;
+    
+    const { resultCode, data } = res.data;
     return {
       isSuccess: resultCode === RESULT_CODE.SUCCESS,
       resultCode,

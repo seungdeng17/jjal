@@ -2,6 +2,7 @@ import { useSetRecoilState } from 'recoil';
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { loginState, adminState } from '@/store/login';
 import { request } from '@util/api';
+import { ADMIN_SESSION_TOKEN } from '@constant/token';
 
 export default function Login() {
   const setIsLogin = useSetRecoilState(loginState);
@@ -17,13 +18,13 @@ export default function Login() {
     const admins = process.env.REACT_APP_ADMINS?.split(',');
     if (!admins?.includes(email)) return;
 
+    sessionStorage.setItem(ADMIN_SESSION_TOKEN, access_token);
     const { isSuccess } = await request({
       url: '/admin/login',
       method: 'POST',
-      params: { email, token: access_token },
+      body: { email },
     });
     if (!isSuccess) return alert('어드민 권한 획득에 실패했습니다.');
-
     setAdminInfo({ email, token: access_token });
   };
 
