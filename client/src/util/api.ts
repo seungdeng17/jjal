@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_HOST, RESULT_CODE } from '@constant/fetch';
+import { ADMIN_SESSION_TOKEN } from '@constant/token';
 
 type RequestArgs = {
   url: string;
@@ -25,40 +26,48 @@ type RequestArgs = {
     | 'unlink'
     | 'UNLINK'
     | undefined;
+  headers?: { [key: string]: string };
   params?: { [key: string]: string };
-  data?: any;
+  body?: { [key: string]: any };
 };
 
-type Result = {
+type RequestResult = {
   isSuccess: boolean;
   resultCode: number;
   data?: any;
 };
 
-type RequestResult = Promise<Result> | Result;
+export const request = async ({
+  url,
+  method = 'get',
+  headers = {},
+  params,
+  body,
+}: RequestArgs): Promise<RequestResult> => {
+  const token = sessionStorage.getItem(ADMIN_SESSION_TOKEN);
+  if (token) headers['x-access-token'] = token;
 
-export function request({ url, method = 'get', params, data }: RequestArgs): RequestResult {
   try {
-    return axios({
+    const res = await axios({
       baseURL: API_HOST,
       withCredentials: true,
       url,
       method,
+      headers,
       params,
-      data,
-    }).then((response) => {
-      const { resultCode, data } = response.data;
-      return {
-        isSuccess: resultCode === RESULT_CODE.SUCCESS,
-        resultCode,
-        data,
-      };
+      data: body,
     });
+    const { resultCode, data } = res.data;
+    return {
+      isSuccess: resultCode === RESULT_CODE.SUCCESS,
+      resultCode,
+      data,
+    };
   } catch (e) {
-    alert(`에러가 발생했습니다. ${e.message}`);
+    alert(`통신 에러가 발생했습니다. ${e.message}`);
     return {
       isSuccess: false,
       resultCode: -1,
     };
   }
-}
+};
