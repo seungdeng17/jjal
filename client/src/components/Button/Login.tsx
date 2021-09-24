@@ -1,31 +1,22 @@
 import { useSetRecoilState } from 'recoil';
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { loginState, adminState } from '@/store/login';
-import { request } from '@util/api';
 import { ADMIN_SESSION_TOKEN } from '@constant/token';
 
 export default function Login() {
   const setIsLogin = useSetRecoilState(loginState);
-  const setAdminInfo = useSetRecoilState(adminState);
+  const setIsAdmin = useSetRecoilState(adminState);
 
   const onSuccess = async (res: GoogleLoginResponse | GoogleLoginResponseOffline) => {
-    const { profileObj, tokenObj } = res as GoogleLoginResponse;
-    if (!profileObj || !tokenObj) return alert(`로그인 실패! ${res.code}`);
+    const { profileObj, tokenId } = res as GoogleLoginResponse;
+    if (!profileObj || !tokenId) return alert(`로그인 실패! ${res.code}`);
     setIsLogin(true);
 
     const { email } = profileObj;
-    const { access_token } = tokenObj;
     const admins = process.env.REACT_APP_ADMINS?.split(',');
     if (!admins?.includes(email)) return;
-
-    sessionStorage.setItem(ADMIN_SESSION_TOKEN, access_token);
-    const { isSuccess } = await request({
-      url: '/admin/login',
-      method: 'POST',
-      body: { email },
-    });
-    if (!isSuccess) return alert('어드민 권한 획득에 실패했습니다.');
-    setAdminInfo({ email, token: access_token });
+    sessionStorage.setItem(ADMIN_SESSION_TOKEN, tokenId);
+    setIsAdmin(true);
   };
 
   return (

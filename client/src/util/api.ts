@@ -57,7 +57,6 @@ export const request = async ({
       params,
       data: body,
     });
-    
     const { resultCode, data } = res.data;
     return {
       isSuccess: resultCode === RESULT_CODE.SUCCESS,
