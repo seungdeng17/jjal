@@ -81,6 +81,6 @@ const SearchBar = styled.div`
     transform: translateY(-50%);
     font-size: 14px;
     cursor: pointer;
-    color: #222;
+    color: #70757a;
   }
 `;
