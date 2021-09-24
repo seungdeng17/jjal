@@ -4,7 +4,11 @@ import { reset } from 'styled-reset';
 const GlobalStyles = createGlobalStyle`
   ${reset}
   html {}
-  body {}
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export default GlobalStyles;
