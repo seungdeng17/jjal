@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('./api.controller');
+const controller = require('./controller');
 const middleware = require('./middleware');
 
 // [PUT] 어드민 로그인
