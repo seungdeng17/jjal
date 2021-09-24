@@ -3,11 +3,13 @@ import { useRecoilValue } from 'recoil';
 import { loginState, adminState } from '@/store/login';
 import { uploadImageFile, File } from '@util/aws';
 import { useHistory } from 'react-router';
+import styled from 'styled-components';
 
 import Login from '@components/Button/Login';
 import Logout from '@components/Button/Logout';
 
 import SearchBar from './SearchBar';
+import MenuBar from '../Menu/MenuBar';
 
 export default function Header() {
   const history = useHistory();
@@ -35,6 +37,18 @@ export default function Header() {
     //   {isLogin ? <Logout /> : <Login />}
     //   <button onClick={handleClickTempImage}>임시 이미지</button>
     // </div>
-    <SearchBar />
+    <HeaderWrap>
+      <SearchBar />
+      <MenuBar />
+    </HeaderWrap>
   );
 }
+
+const HeaderWrap = styled.div`
+  position: relative;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { BiSearch } from 'react-icons/bi';
 import { ImCross } from 'react-icons/im';
 
-export default function SearchBax() {
+export default function SearchBar() {
   const [searchValue, setSearchValue] = useRecoilState(searchState);
   const isActiveCross = useRecoilValue(crossState);
 
@@ -17,25 +17,15 @@ export default function SearchBax() {
   };
 
   return (
-    <HeaderWrap onSubmit={onSubmit}>
-      <SearchBar>
-        <BiSearch className="search-icon" />
-        <input type="text" value={searchValue} onChange={onChange} />
-        {isActiveCross && <ImCross className="close-icon" onClick={onCrossClick} />}
-      </SearchBar>
-    </HeaderWrap>
+    <SearchBarWrap onSubmit={onSubmit}>
+      <BiSearch className="search-icon" />
+      <input type="text" value={searchValue} onChange={onChange} />
+      {isActiveCross && <ImCross className="close-icon" onClick={onCrossClick} />}
+    </SearchBarWrap>
   );
 }
 
-const HeaderWrap = styled.form`
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const SearchBar = styled.div`
+const SearchBarWrap = styled.form`
   position: relative;
   background: #fff;
   border: 1px solid #dfe1e5;
@@ -76,10 +66,11 @@ const SearchBar = styled.div`
 
   .close-icon {
     position: absolute;
-    top: 50%;
     right: 20px;
+    top: 50%;
     transform: translateY(-50%);
-    font-size: 14px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
     color: #70757a;
   }
