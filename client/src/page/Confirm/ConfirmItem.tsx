@@ -1,12 +1,22 @@
 import styled from 'styled-components';
+import { request } from '@util/api';
+import { DELETE_IMAGE_TYPE } from '@constant/type';
 
 type ConfirmItemProps = {
-  key: string;
+  image_key: string;
   image_url: string;
   tag: string[];
 };
 
-export default function ConfirmItem({ image_url, tag }: ConfirmItemProps) {
+export default function ConfirmItem({ image_key, image_url, tag }: ConfirmItemProps) {
+  const onClickDelete = async () => {
+    await request({
+      url: '/admin/delete-image',
+      method: 'delete',
+      params: { key: image_key, type: DELETE_IMAGE_TYPE.CONFIRM },
+    });
+  };
+
   return (
     <li>
       <ConfirmItemWrap>
@@ -20,7 +30,7 @@ export default function ConfirmItem({ image_url, tag }: ConfirmItemProps) {
           <button className="accept" type="button">
             등록
           </button>
-          <button className="reject" type="button">
+          <button onClick={onClickDelete} className="reject" type="button">
             삭제
           </button>
         </ButtonWrap>

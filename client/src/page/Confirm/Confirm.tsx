@@ -27,7 +27,7 @@ export default function Confirm() {
       <ul>
         {confirmImages.map((data) => {
           const { key, image_url, tag } = data;
-          return <ConfirmItem key={key} image_url={image_url} tag={tag} />;
+          return <ConfirmItem key={key} image_key={key} image_url={image_url} tag={tag} />;
         })}
       </ul>
     </Content>
