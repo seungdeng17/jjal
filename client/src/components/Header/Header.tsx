@@ -51,4 +51,6 @@ const HeaderWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fff;
+  z-index: 10000;
 `;
