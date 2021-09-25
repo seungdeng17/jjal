@@ -39,8 +39,10 @@ const NavMenuWrap = styled.div<NavMenuWrap>`
 const NavMenuContainer = styled.div`
   position: fixed;
   top: 80px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 1000px;
   height: fit-content;
   padding: 20px 0 10px 0;
   z-index: 1100;
@@ -55,11 +57,11 @@ const NavMenuContainer = styled.div`
 
   &.menu-show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
   &.menu-close {
     opacity: 0;
-    transform: translateY(-50px);
+    transform: translateX(-50%) translateY(-50px);
     pointer-events: none;
   }
 `;
