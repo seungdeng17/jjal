@@ -64,7 +64,7 @@ export const request = async ({
       data,
     };
   } catch (e) {
-    alert(`통신 에러가 발생했습니다. ${e.message}`);
+    alert(`http error: ${e.message}`);
     return {
       isSuccess: false,
       resultCode: -1,
