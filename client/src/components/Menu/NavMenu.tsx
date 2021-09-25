@@ -41,13 +41,13 @@ const NavMenuContainer = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 250px;
+  height: 150px;
   z-index: 1100;
   background-color: #fff;
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-  transition: transform 0.7s, opacity 0.7s;
+  transition: transform 0.5s, opacity 0.3s;
 
   &.menu-show {
     opacity: 1;
@@ -55,7 +55,7 @@ const NavMenuContainer = styled.div`
   }
   &.menu-close {
     opacity: 0;
-    transform: translateY(-180px);
+    transform: translateY(-100px);
     pointer-events: none;
   }
 `;
