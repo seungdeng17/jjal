@@ -1,3 +1,5 @@
+import Content from '@components/Layout/Content';
+
 export default function Main() {
-  return <div>메인</div>;
+  return <Content>메인</Content>;
 }
