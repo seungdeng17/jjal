@@ -42,7 +42,7 @@ const NavMenuContainer = styled.div`
   left: 0;
   width: 100%;
   height: fit-content;
-  padding: 30px 0 15px 0;
+  padding: 20px 0 10px 0;
   z-index: 1100;
   background-color: #fff;
   border-bottom-right-radius: 30px;
