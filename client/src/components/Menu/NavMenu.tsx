@@ -28,7 +28,7 @@ export default function NavMenu({ isShow, onTrigger, menuClassName }: NavMenuPro
 
 const NavMenuWrap = styled.div<NavMenuWrap>`
   position: fixed;
-  top: 0;
+  top: 80px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -38,16 +38,20 @@ const NavMenuWrap = styled.div<NavMenuWrap>`
 
 const NavMenuContainer = styled.div`
   position: fixed;
-  top: 0;
+  top: 80px;
   left: 0;
   width: 100%;
-  height: 150px;
+  height: fit-content;
+  padding: 30px 0 15px 0;
   z-index: 1100;
   background-color: #fff;
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
   transition: transform 0.5s, opacity 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &.menu-show {
     opacity: 1;
@@ -55,7 +59,7 @@ const NavMenuContainer = styled.div`
   }
   &.menu-close {
     opacity: 0;
-    transform: translateY(-100px);
+    transform: translateY(-50px);
     pointer-events: none;
   }
 `;

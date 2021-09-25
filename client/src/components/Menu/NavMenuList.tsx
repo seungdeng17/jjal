@@ -35,14 +35,14 @@ export default function NavMenuList({ onTrigger }: NavMenuListProps) {
 }
 
 const NavMenuListWrap = styled.ul`
-  position: relative;
-  top: 110px;
   z-index: 1200;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
 
   li {
+    font-size: 0.95rem;
     margin: 0 1.5rem;
+    margin-bottom: 0.75rem;
     cursor: pointer;
 
     &::after {
