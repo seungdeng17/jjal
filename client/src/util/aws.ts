@@ -34,13 +34,13 @@ export const uploadImageFile = async (file: File, tags: Tags = []) => {
       },
     }).promise();
 
-    const { isSuccess, resultCode } = await request({
+    const { isSuccess } = await request({
       url: '/confirm-image',
       method: 'post',
       body: { key: data.Key, image_url: data.Location, tag: tags },
     });
 
-    if (!isSuccess) throw new Error(`http error: ${resultCode}`);
+    if (!isSuccess) return;
     alert('이미지 업로드에 성공했습니다.');
   } catch (e) {
     alert(`에러가 발생했습니다. ${e.message}`);

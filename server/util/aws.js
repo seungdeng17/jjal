@@ -7,13 +7,17 @@ AWS.config.update({
 const s3 = new AWS.S3();
 
 exports.deleteImageFile = async (key) => {
-  return await s3.deleteObject(
-    {
-      Bucket: process.env.AWS_BUCKET_NAME,
-      Key: key,
-    },
-    (e) => {
-      if (e) throw e;
-    }
-  );
+  try {
+    return await s3.deleteObject(
+      {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: key,
+      },
+      (e) => {
+        if (e) throw e;
+      }
+    );
+  } catch (e) {
+    console.log(`에러가 발생했습니다. ${e.message}`);
+  }
 };
