@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-type ConfirmImageProps = {
+type ConfirmItemProps = {
   key: string;
   image_url: string;
   tag: string[];
 };
 
-export default function ConfirmImage({ image_url, tag }: ConfirmImageProps) {
+export default function ConfirmItem({ image_url, tag }: ConfirmItemProps) {
   return (
     <li>
-      <ConfirmImageWrap>
+      <ConfirmItemWrap>
         <img src={image_url} alt="jjal-confirm-image" />
         <TagWrap>
           {tag.map((data) => (
@@ -24,12 +24,12 @@ export default function ConfirmImage({ image_url, tag }: ConfirmImageProps) {
             삭제
           </button>
         </ButtonWrap>
-      </ConfirmImageWrap>
+      </ConfirmItemWrap>
     </li>
   );
 }
 
-const ConfirmImageWrap = styled.div`
+const ConfirmItemWrap = styled.div`
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -43,7 +43,7 @@ const ConfirmImageWrap = styled.div`
     border-radius: 10px;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 700px) {
     justify-content: center;
     flex-direction: column;
 
@@ -66,7 +66,7 @@ const TagWrap = styled.ul`
     color: #00376b;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 700px) {
     width: 80%;
     margin: 10px 0;
   }
@@ -92,14 +92,21 @@ const ButtonWrap = styled.div`
   .accept {
     margin-bottom: 8px;
     background-color: #3182f6;
+    :hover {
+      background-color: #1c64da;
+    }
   }
   .reject {
     border: 1px solid #bdc3c7;
     color: #3182f6;
     background-color: #fff;
+    :hover {
+      color: #fff;
+      background-color: #f1f2f6;
+    }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 700px) {
     width: 80%;
     justify-content: center;
     flex-direction: row;

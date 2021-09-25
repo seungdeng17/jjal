@@ -6,6 +6,8 @@ const client = new OAuth2Client(process.env.OAUTH_CLIENT_ID);
 
 const middleware = async (req, res, next) => {
   const token = req.headers['x-access-token'];
+  if (!token) return res.status(200).json({ resultCode: -1, data: '필수 정보 누락' });
+
   const data = await client.verifyIdToken({
     idToken: token,
     audience: process.env.OAUTH_CLIENT_ID,

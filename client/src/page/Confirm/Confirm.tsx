@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { request } from '@util/api';
 
 import Content from '@components/Layout/Content';
-import ConfirmImage from '@components/Image/ConfirmImage';
+import ConfirmItem from './ConfirmItem';
 
 type ConfirmImage = {
   key: string;
@@ -27,7 +27,7 @@ export default function Confirm() {
       <ul>
         {confirmImages.map((data) => {
           const { key, image_url, tag } = data;
-          return <ConfirmImage key={key} image_url={image_url} tag={tag} />;
+          return <ConfirmItem key={key} image_url={image_url} tag={tag} />;
         })}
       </ul>
     </Content>
