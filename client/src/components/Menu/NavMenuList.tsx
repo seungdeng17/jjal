@@ -17,7 +17,6 @@ export default function NavMenuList({ onTrigger }: NavMenuListProps) {
 
   const onHistoryPush = (path: string) => {
     history.push(path);
-    onTrigger();
   };
   const onOpenModal = (id: string) => {
     console.log('태그 목록 모달', id);
@@ -28,7 +27,7 @@ export default function NavMenuList({ onTrigger }: NavMenuListProps) {
     <NavMenuListWrap>
       <li onClick={() => onHistoryPush('/')}>짤 올리기</li>
       {isAdmin && <li onClick={() => onHistoryPush('/temp-image')}>등록 요청 목록</li>}
-      <li onClick={() => onOpenModal('')}>태그</li>
+      <li onClick={() => onOpenModal('')}>태그 목록</li>
       <li onClick={onTrigger}>{isLogin ? <Logout /> : <Login />}</li>
     </NavMenuListWrap>
   );
@@ -44,6 +43,10 @@ const NavMenuListWrap = styled.ul`
     margin: 0 1.5rem;
     margin-bottom: 0.75rem;
     cursor: pointer;
+
+    :hover {
+      color: #1e90ff;
+    }
 
     &::after {
       position: relative;
