@@ -4,11 +4,7 @@ import { reset } from 'styled-reset';
 const GlobalStyles = createGlobalStyle`
   ${reset}
   html {}
-  body {
-    margin: 0 auto;
-    max-width: 1000px;
-    background-color: #2F3640;
-  }
+  body {}
   body, button, input, textarea {
     font-family: 'Noto Sans KR', sans-serif;
     color: #222;
