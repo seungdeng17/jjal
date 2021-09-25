@@ -12,6 +12,7 @@ module.exports = merge(common, {
     port: 3000,
     publicPath: '/',
     open: true,
+    historyApiFallback: true,
   },
 
   plugins: [

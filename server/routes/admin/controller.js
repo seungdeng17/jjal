@@ -1,6 +1,7 @@
-const Admin = require('../../model/admin');
+const ConfirmImage = require('../../model/confirmImage');
 
-// [GET] 임시 이미지 목록
-exports.tempImage = async (req, res) => {
-  return res.status(200).json({ resultCode: 200 });
+// [GET] 등록 요청 이미지 목록
+exports.confirmImage = async (req, res) => {
+  const data = await ConfirmImage.find();
+  return res.status(200).json({ resultCode: 200, data });
 };

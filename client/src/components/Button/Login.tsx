@@ -22,12 +22,7 @@ export default function Login() {
   return (
     <GoogleLogin
       clientId={process.env.REACT_APP_OAUTH_CLIENT_ID as string}
-      render={(renderProps) => (
-        <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
-          Login
-        </button>
-      )}
-      buttonText="Login"
+      render={(renderProps) => <span onClick={renderProps.onClick}>로그인</span>}
       onSuccess={onSuccess}
       cookiePolicy={'single_host_origin'}
     />

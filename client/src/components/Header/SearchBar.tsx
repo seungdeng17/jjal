@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { searchState, crossState } from '@store/search';
 import styled from 'styled-components';
@@ -6,6 +7,7 @@ import { BiSearch } from 'react-icons/bi';
 import { ImCross } from 'react-icons/im';
 
 export default function SearchBar() {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [searchValue, setSearchValue] = useRecoilState(searchState);
   const isActiveCross = useRecoilValue(crossState);
 
@@ -16,10 +18,14 @@ export default function SearchBar() {
     console.log(searchValue);
   };
 
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
     <SearchBarWrap onSubmit={onSubmit}>
       <BiSearch className="search-icon" />
-      <input type="text" value={searchValue} onChange={onChange} />
+      <input ref={inputRef} type="text" value={searchValue} onChange={onChange} />
       {isActiveCross && <ImCross className="close-icon" onClick={onCrossClick} />}
     </SearchBarWrap>
   );
