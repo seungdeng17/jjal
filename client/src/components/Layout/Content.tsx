@@ -9,7 +9,10 @@ export default function Content({ children }: ContentProps) {
 }
 
 const ContentWrap = styled.div`
+  position: relative;
+  top: 80px;
   padding: 30px 20px;
   width: 90%;
   margin: 0 auto;
+  margin-bottom: 100px;
 `;

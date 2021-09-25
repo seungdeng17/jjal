@@ -16,15 +16,15 @@ export default function Header() {
   const handleUploadImage = () => uploadImageFile(imageFileRef.current as File);
 
   return (
-    // <div>
-    //   <input type="file" accept=".gif,.jpg,.jpeg,.png" onChange={handleFileInput} />
-    //   <p>업로드 이미지</p>
-    //   <img style={{ display: 'block' }} src={imgSrc} />
-    //   <button type="button" onClick={handleUploadImage}>
-    //     이미지 전송
-    //   </button>
-    // </div>
     <HeaderWrap>
+      {/* <div>
+        <input type="file" accept=".gif,.jpg,.jpeg,.png" onChange={handleFileInput} />
+        <p>업로드 이미지</p>
+        <img style={{ display: 'block' }} src={imgSrc} />
+        <button type="button" onClick={handleUploadImage}>
+          이미지 전송
+        </button>
+      </div> */}
       <SearchBar />
       <MenuBar />
     </HeaderWrap>
@@ -32,7 +32,7 @@ export default function Header() {
 }
 
 const HeaderWrap = styled.div`
-  position: relative;
+  position: fixed;
   width: 100%;
   height: 80px;
   display: flex;

@@ -9,15 +9,11 @@ type NavMenuProps = {
   menuClassName: string;
 };
 
-type NavMenuWrap = {
-  isShow: boolean;
-};
-
 export default function NavMenu({ isShow, onTrigger, menuClassName }: NavMenuProps) {
   const onClickContainer = (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation();
 
   return ReactDOM.createPortal(
-    <NavMenuWrap isShow={isShow}>
+    <NavMenuWrap className={menuClassName}>
       <NavMenuContainer onClick={onClickContainer} className={menuClassName}>
         <NavMenuList onTrigger={onTrigger} />
       </NavMenuContainer>
@@ -26,14 +22,23 @@ export default function NavMenu({ isShow, onTrigger, menuClassName }: NavMenuPro
   );
 }
 
-const NavMenuWrap = styled.div<NavMenuWrap>`
+const NavMenuWrap = styled.div`
   position: fixed;
   top: 80px;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 1000;
-  pointer-events: ${(props) => (props.isShow ? 'auto' : 'none')};
+  transition: background-color 0.3s;
+
+  &.menu-show {
+    background-color: rgba(0, 0, 0, 0.2);
+    pointer-events: auto;
+  }
+  &.menu-close {
+    background-color: transparent;
+    pointer-events: none;
+  }
 `;
 
 const NavMenuContainer = styled.div`
