@@ -12,7 +12,7 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={Main} />
-        <Route path="/admin/confirm" component={Confirm} />
+        <Route path="/confirm" component={Confirm} />
       </Switch>
     </>
   );

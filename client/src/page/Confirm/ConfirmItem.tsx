@@ -101,7 +101,7 @@ const ButtonWrap = styled.div`
     color: #3182f6;
     background-color: #fff;
     :hover {
-      color: #fff;
+      color: #636e72;
       background-color: #f1f2f6;
     }
   }

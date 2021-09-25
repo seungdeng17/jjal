@@ -27,7 +27,7 @@ export default function NavMenuList({ onTrigger }: NavMenuListProps) {
   return (
     <NavMenuListWrap>
       <li onClick={() => onHistoryPush('/')}>짤 올리기</li>
-      {isAdmin && <li onClick={() => onHistoryPush('/admin/confirm')}>등록 요청 목록</li>}
+      {isAdmin && <li onClick={() => onHistoryPush('/confirm')}>등록 요청 목록</li>}
       <li onClick={() => onOpenModal('')}>태그 목록</li>
       <li onClick={onTrigger}>{isLogin ? <Logout /> : <Login />}</li>
     </NavMenuListWrap>
