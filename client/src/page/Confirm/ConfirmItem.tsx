@@ -1,20 +1,25 @@
 import styled from 'styled-components';
 import { request } from '@util/api';
 import { DELETE_IMAGE_TYPE } from '@constant/type';
+import { toast } from 'react-toastify';
 
 type ConfirmItemProps = {
   imageKey: string;
   imageUrl: string;
   tag: string[];
+  onDeleteSuccess: (key: string) => void;
 };
 
-export default function ConfirmItem({ imageKey, imageUrl, tag }: ConfirmItemProps) {
+export default function ConfirmItem({ imageKey, imageUrl, tag, onDeleteSuccess }: ConfirmItemProps) {
   const onClickDelete = async () => {
-    await request({
+    const { isSuccess } = await request({
       url: '/admin/delete-image',
       method: 'delete',
       params: { key: imageKey, type: DELETE_IMAGE_TYPE.CONFIRM },
     });
+    if (!isSuccess) return;
+    onDeleteSuccess(imageKey);
+    toast.success('삭제되었습니다.');
   };
 
   return (

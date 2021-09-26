@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import GlobalStyles from '@style/GlobalStyles';
+import { ToastContainer } from 'react-toastify';
 
 import Header from '@components/Header/Header';
 import Main from '@page/Main/Main';
@@ -9,6 +10,7 @@ export default function App() {
   return (
     <>
       <GlobalStyles />
+      <ToastContainer position="top-center" autoClose={1500} hideProgressBar={true} theme="colored" />
       <Header />
       <Switch>
         <Route exact path="/" component={Main} />

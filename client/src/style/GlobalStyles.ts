@@ -4,11 +4,11 @@ import { reset } from 'styled-reset';
 const GlobalStyles = createGlobalStyle`
   ${reset}
   html {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
   html::-webkit-scrollbar{
-    display: none; /* Chrome, Safari, Opera*/
+    display: none;
   }
   body {}
   body, button, input, textarea {
@@ -19,6 +19,9 @@ const GlobalStyles = createGlobalStyle`
     min-height: 100vh;
     background-color: #fff;
     overflow: hidden;
+  }
+  .Toastify__toast-container {
+    z-index: 20000;
   }
 `;
 

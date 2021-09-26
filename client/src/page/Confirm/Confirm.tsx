@@ -23,6 +23,10 @@ export default function Confirm() {
     setConfirmImages((prev) => [...prev, ...data]);
   });
 
+  const onDeleteSuccess = (key: string) => {
+    setConfirmImages((prev) => prev.filter((confirmImage) => confirmImage.key !== key));
+  };
+
   if (isFetching) {
     return (
       <Content>
@@ -43,7 +47,9 @@ export default function Confirm() {
       <ul>
         {confirmImages.map((data: ConfirmImage) => {
           const { key, image_url, tag } = data;
-          return <ConfirmItem key={key} imageKey={key} imageUrl={image_url} tag={tag} />;
+          return (
+            <ConfirmItem key={key} imageKey={key} imageUrl={image_url} tag={tag} onDeleteSuccess={onDeleteSuccess} />
+          );
         })}
       </ul>
     </Content>

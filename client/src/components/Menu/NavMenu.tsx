@@ -52,7 +52,7 @@ const NavMenuContainer = styled.div`
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-  transition: transform 0.5s, opacity 0.3s;
+  transition: transform 0.35s;
   display: flex;
   justify-content: center;
   align-items: center;
