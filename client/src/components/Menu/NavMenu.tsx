@@ -4,12 +4,11 @@ import styled from 'styled-components';
 import NavMenuList from './NavMenuList';
 
 type NavMenuProps = {
-  isShow: boolean;
   onTrigger: () => void;
   menuClassName: string;
 };
 
-export default function NavMenu({ isShow, onTrigger, menuClassName }: NavMenuProps) {
+export default function NavMenu({ onTrigger, menuClassName }: NavMenuProps) {
   const onClickContainer = (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation();
 
   return ReactDOM.createPortal(

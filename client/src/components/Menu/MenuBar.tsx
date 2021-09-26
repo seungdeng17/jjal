@@ -17,7 +17,7 @@ export default function MenuBar() {
       <HamburgerIcon className={menuClassName}>
         <span />
       </HamburgerIcon>
-      <NavMenu isShow={isShow} onTrigger={onTrigger} menuClassName={menuClassName} />
+      <NavMenu onTrigger={onTrigger} menuClassName={menuClassName} />
     </MenuBarWrap>
   );
 }
