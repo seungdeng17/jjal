@@ -2,6 +2,7 @@ import { atom } from 'recoil';
 
 type LoginInfo = {
   name: string;
+  isAdmin: boolean;
 };
 
 export const loginState = atom<boolean>({
@@ -13,10 +14,6 @@ export const loginInfoState = atom<LoginInfo>({
   key: 'loginInfo',
   default: {
     name: '',
+    isAdmin: false,
   },
-});
-
-export const adminState = atom<boolean>({
-  key: 'isAdmin',
-  default: false,
 });

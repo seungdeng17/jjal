@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
-import { loginState, adminState } from '@/store/login';
+import { loginState, loginInfoState } from '@/store/login';
 import { FiUpload, FiCheckCircle, FiTag, FiLogOut } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -16,7 +16,7 @@ type NavMenuListProps = {
 export default function NavMenuList({ onTrigger }: NavMenuListProps) {
   const history = useHistory();
   const isLogin = useRecoilValue(loginState);
-  const isAdmin = useRecoilValue(adminState);
+  const { isAdmin } = useRecoilValue(loginInfoState);
 
   const onHistoryPush = (path: string) => {
     history.push(path);

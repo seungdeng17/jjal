@@ -1,12 +1,15 @@
 import { Route, Switch } from 'react-router-dom';
 import GlobalStyles from '@style/GlobalStyles';
 import { ToastContainer } from 'react-toastify';
+import useLogin from '@hook/useLogin';
 
 import Header from '@components/Header/Header';
 import Main from '@page/Main/Main';
 import Confirm from '@page/Confirm/Confirm';
 
 export default function App() {
+  useLogin();
+
   return (
     <>
       <GlobalStyles />
