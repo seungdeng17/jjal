@@ -26,6 +26,7 @@ export default function NavMenuList({ onTrigger }: NavMenuListProps) {
     console.log('태그 목록 모달', id);
     onTrigger();
   };
+  const onClickIcon = (e: React.MouseEvent<HTMLOrSVGElement>) => e.stopPropagation();
 
   return (
     <NavMenuListWrap>
@@ -36,7 +37,7 @@ export default function NavMenuList({ onTrigger }: NavMenuListProps) {
       <MenuItem title="태그 목록" icon={<FiTag />} onClick={() => onOpenModal('')} />
       <MenuItem
         title={isLogin ? <Logout /> : <Login />}
-        icon={isLogin ? <FiLogOut /> : <FcGoogle />}
+        icon={isLogin ? <FiLogOut onClick={onClickIcon} /> : <FcGoogle onClick={onClickIcon} />}
         onClick={onTrigger}
       />
     </NavMenuListWrap>
