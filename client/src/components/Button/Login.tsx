@@ -2,8 +2,6 @@ import { useSetRecoilState } from 'recoil';
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { loginState, adminState } from '@/store/login';
 import { ADMIN_SESSION_TOKEN } from '@constant/token';
-import { FcGoogle } from 'react-icons/fc';
-import styled from 'styled-components';
 
 export default function Login() {
   const setIsLogin = useSetRecoilState(loginState);
@@ -24,22 +22,9 @@ export default function Login() {
   return (
     <GoogleLogin
       clientId={process.env.REACT_APP_OAUTH_CLIENT_ID as string}
-      render={(renderProps) => (
-        <LoginWrap onClick={renderProps.onClick}>
-          <FcGoogle />
-          로그인
-        </LoginWrap>
-      )}
+      render={(renderProps) => <span onClick={renderProps.onClick}>로그인</span>}
       onSuccess={onSuccess}
       cookiePolicy={'single_host_origin'}
     />
   );
 }
-
-const LoginWrap = styled.span`
-  display: flex;
-
-  svg {
-    margin-right: 3px;
-  }
-`;

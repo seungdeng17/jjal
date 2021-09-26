@@ -2,7 +2,10 @@ import { useRecoilValue } from 'recoil';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { loginState, adminState } from '@/store/login';
+import { FiUpload, FiCheckCircle, FiTag, FiLogOut } from 'react-icons/fi';
+import { FcGoogle } from 'react-icons/fc';
 
+import MenuItem from './MenuItem';
 import Login from '@components/Button/Login';
 import Logout from '@components/Button/Logout';
 
@@ -26,10 +29,16 @@ export default function NavMenuList({ onTrigger }: NavMenuListProps) {
 
   return (
     <NavMenuListWrap>
-      <li onClick={() => onHistoryPush('/')}>짤 올리기</li>
-      {isAdmin && <li onClick={() => onHistoryPush('/confirm')}>등록 요청 목록</li>}
-      <li onClick={() => onOpenModal('')}>태그 목록</li>
-      <li onClick={onTrigger}>{isLogin ? <Logout /> : <Login />}</li>
+      <MenuItem title="짤 등록" icon={<FiUpload />} onClick={() => onHistoryPush('/')} />
+      {isAdmin && (
+        <MenuItem title="등록 요청 목록" icon={<FiCheckCircle />} onClick={() => onHistoryPush('/confirm')} />
+      )}
+      <MenuItem title="태그 목록" icon={<FiTag />} onClick={() => onOpenModal('')} />
+      <MenuItem
+        title={isLogin ? <Logout /> : <Login />}
+        icon={isLogin ? <FiLogOut /> : <FcGoogle />}
+        onClick={onTrigger}
+      />
     </NavMenuListWrap>
   );
 }
