@@ -47,30 +47,4 @@ const NavMenuListWrap = styled.ul`
   z-index: 1200;
   display: flex;
   flex-wrap: wrap;
-
-  li {
-    font-size: 0.95rem;
-    margin: 0 1.5rem;
-    margin-bottom: 0.75rem;
-    cursor: pointer;
-
-    :hover {
-      color: #1e90ff;
-    }
-
-    &::after {
-      position: relative;
-      left: 1.5rem;
-      content: '';
-      display: inline-block;
-      border-right: 1px solid #ccc;
-      height: 12px;
-    }
-
-    &:last-child {
-      &::after {
-        display: none;
-      }
-    }
-  }
 `;
