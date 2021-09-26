@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import SearchBar from './SearchBar';
 import MenuBar from '../Menu/MenuBar';
+import MyInfo from './MyInfo';
 
 export default function Header() {
   const [imgSrc, setImgSrc] = useState('');
@@ -27,6 +28,7 @@ export default function Header() {
       </div> */}
       <SearchBar />
       <MenuBar />
+      <MyInfo />
     </HeaderWrap>
   );
 }

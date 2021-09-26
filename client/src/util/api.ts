@@ -1,6 +1,12 @@
 import axios from 'axios';
+import Progress from 'rsup-progress';
 import { API_HOST, RESULT_CODE } from '@constant/fetch';
 import { ADMIN_SESSION_TOKEN } from '@constant/token';
+
+const progress = new Progress({
+  color: '#54a0ff',
+  zIndex: 100000,
+});
 
 type RequestArgs = {
   url: string;
@@ -48,15 +54,17 @@ export const request = async ({
   if (token) headers['x-access-token'] = token;
 
   try {
-    const res = await axios({
-      baseURL: API_HOST,
-      withCredentials: true,
-      url,
-      method,
-      headers,
-      params,
-      data: body,
-    });
+    const res = await progress.promise(
+      axios({
+        baseURL: API_HOST,
+        withCredentials: true,
+        url,
+        method,
+        headers,
+        params,
+        data: body,
+      })
+    );
     const { resultCode, data } = res.data;
     return {
       isSuccess: resultCode === RESULT_CODE.SUCCESS,

@@ -15,4 +15,15 @@ const ContentWrap = styled.div`
   width: 90%;
   margin: 0 auto;
   margin-bottom: 100px;
+
+  &::before {
+    content: '';
+    position: fixed;
+    display: inline-block;
+    width: 100%;
+    height: 5px;
+    top: 80px;
+    left: 0;
+    background-color: #fff;
+  }
 `;

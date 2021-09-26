@@ -9,6 +9,7 @@ module.exports = merge(common, {
   entry: ['@babel/polyfill', './src/index.tsx'],
 
   devServer: {
+    host: 'localhost',
     port: 3000,
     publicPath: '/',
     open: true,

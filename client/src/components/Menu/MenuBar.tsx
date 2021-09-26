@@ -17,7 +17,7 @@ export default function MenuBar() {
       <HamburgerIcon className={menuClassName}>
         <span />
       </HamburgerIcon>
-      <NavMenu isShow={isShow} onTrigger={onTrigger} menuClassName={menuClassName} />
+      <NavMenu onTrigger={onTrigger} menuClassName={menuClassName} />
     </MenuBarWrap>
   );
 }
@@ -51,7 +51,7 @@ const HamburgerIcon = styled.div`
     width: 24px;
     height: 3px;
     background-color: #636e72;
-    transition: transform 0.5s, opacity 0.3s;
+    transition: transform 0.35s, opacity 0.25s;
     transform-origin: left;
   }
 

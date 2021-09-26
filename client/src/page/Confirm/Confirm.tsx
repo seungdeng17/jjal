@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { request } from '@util/api';
+import { useQuery } from 'react-query';
 
 import Content from '@components/Layout/Content';
 import ConfirmItem from './ConfirmItem';
+import SkeletonBox from '@components/Layout/SkeletonBox';
+import Empty from '@components/Alert/Empty';
 
 type ConfirmImage = {
   key: string;
@@ -14,20 +17,39 @@ type ConfirmImage = {
 export default function Confirm() {
   const [confirmImages, setConfirmImages] = useState<ConfirmImage[]>([]);
 
-  useEffect(() => {
-    (async () => {
-      const { isSuccess, data } = await request({ url: '/admin/confirm-image' });
-      if (!isSuccess) return;
-      setConfirmImages([...confirmImages, ...data]);
-    })();
-  }, []);
+  const { isFetching } = useQuery('confirm-image', async () => {
+    const { isSuccess, data } = await request({ url: '/admin/confirm-image' });
+    if (!isSuccess) return;
+    setConfirmImages((prev) => [...prev, ...data]);
+  });
+
+  const onDeleteSuccess = (key: string) => {
+    setConfirmImages((prev) => prev.filter((confirmImage) => confirmImage.key !== key));
+  };
+
+  if (isFetching) {
+    return (
+      <Content>
+        <SkeletonBox />
+      </Content>
+    );
+  }
+
+  if (!confirmImages.length)
+    return (
+      <Content>
+        <Empty />
+      </Content>
+    );
 
   return (
     <Content>
       <ul>
-        {confirmImages.map((data) => {
+        {confirmImages.map((data: ConfirmImage) => {
           const { key, image_url, tag } = data;
-          return <ConfirmItem key={key} image_key={key} image_url={image_url} tag={tag} />;
+          return (
+            <ConfirmItem key={key} imageKey={key} imageUrl={image_url} tag={tag} onDeleteSuccess={onDeleteSuccess} />
+          );
         })}
       </ul>
     </Content>

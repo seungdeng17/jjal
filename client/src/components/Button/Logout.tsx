@@ -1,10 +1,21 @@
 import { GoogleLogout } from 'react-google-login';
+import { useSetRecoilState } from 'recoil';
+import { useHistory } from 'react-router';
+import { loginState, loginInfoState } from '@/store/login';
 import { ADMIN_SESSION_TOKEN } from '@constant/token';
+import { defer } from '@util/util';
 
 export default function Logout() {
+  const history = useHistory();
+  const setIsLogin = useSetRecoilState(loginState);
+  const setLoginInfo = useSetRecoilState(loginInfoState);
+
   const onLogoutSuccess = async () => {
     sessionStorage.removeItem(ADMIN_SESSION_TOKEN);
-    window.location.reload();
+    await defer(300);
+    setIsLogin(false);
+    setLoginInfo((prev) => ({ ...prev, name: '', isAdmin: false }));
+    history.push('/');
   };
 
   return (
