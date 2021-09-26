@@ -27,20 +27,22 @@ const SkeletonBoxWrap = styled.div`
   gap: 25px;
   grid-template-columns: repeat(4, 1fr);
   .react-loading-skeleton {
-    height: 250px;
+    height: 275px;
   }
 
   @media (max-width: 1300px) {
+    gap: 20px;
     grid-template-columns: repeat(3, 1fr);
     .react-loading-skeleton {
-      height: 200px;
+      height: 225px;
     }
   }
 
   @media (max-width: 700px) {
+    gap: 17.5px;
     grid-template-columns: repeat(2, 1fr);
     .react-loading-skeleton {
-      height: 175px;
+      height: 200px;
     }
   }
 `;
