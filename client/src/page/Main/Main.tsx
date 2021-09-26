@@ -1,5 +1,10 @@
 import Content from '@components/Layout/Content';
+import SkeletonBox from '@components/Layout/SkeletonBox';
 
 export default function Main() {
-  return <Content>메인</Content>;
+  return (
+    <Content>
+      <SkeletonBox />
+    </Content>
+  );
 }
