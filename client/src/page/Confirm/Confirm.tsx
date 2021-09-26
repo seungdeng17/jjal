@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 
 import Content from '@components/Layout/Content';
 import ConfirmItem from './ConfirmItem';
+import SkeletonBox from '@components/Layout/SkeletonBox';
 import Empty from '@components/Alert/Empty';
 
 type ConfirmImage = {
@@ -16,14 +17,18 @@ type ConfirmImage = {
 export default function Confirm() {
   const [confirmImages, setConfirmImages] = useState<ConfirmImage[]>([]);
 
-  const { isLoading } = useQuery('confirm-image', async () => {
+  const { isFetching } = useQuery('confirm-image', async () => {
     const { isSuccess, data } = await request({ url: '/admin/confirm-image' });
     if (!isSuccess) return;
     setConfirmImages((prev) => [...prev, ...data]);
   });
 
-  if (isLoading) {
-    return <Content>로딩</Content>;
+  if (isFetching) {
+    return (
+      <Content>
+        <SkeletonBox />
+      </Content>
+    );
   }
 
   if (!confirmImages.length)
