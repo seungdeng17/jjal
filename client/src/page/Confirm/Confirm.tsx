@@ -3,6 +3,7 @@ import { request } from '@util/api';
 
 import Content from '@components/Layout/Content';
 import ConfirmItem from './ConfirmItem';
+import Empty from '@components/Alert/Empty';
 
 type ConfirmImage = {
   key: string;
@@ -21,6 +22,13 @@ export default function Confirm() {
       setConfirmImages([...confirmImages, ...data]);
     })();
   }, []);
+
+  if (!confirmImages.length)
+    return (
+      <Content>
+        <Empty />
+      </Content>
+    );
 
   return (
     <Content>
