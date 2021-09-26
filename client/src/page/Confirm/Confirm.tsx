@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { request } from '@util/api';
+import { useQuery } from 'react-query';
 
 import Content from '@components/Layout/Content';
 import ConfirmItem from './ConfirmItem';
@@ -15,13 +16,15 @@ type ConfirmImage = {
 export default function Confirm() {
   const [confirmImages, setConfirmImages] = useState<ConfirmImage[]>([]);
 
-  useEffect(() => {
-    (async () => {
-      const { isSuccess, data } = await request({ url: '/admin/confirm-image' });
-      if (!isSuccess) return;
-      setConfirmImages([...confirmImages, ...data]);
-    })();
-  }, []);
+  const { isLoading } = useQuery('confirm-image', async () => {
+    const { isSuccess, data } = await request({ url: '/admin/confirm-image' });
+    if (!isSuccess) return;
+    setConfirmImages((prev) => [...prev, ...data]);
+  });
+
+  if (isLoading) {
+    return <Content>로딩</Content>;
+  }
 
   if (!confirmImages.length)
     return (
@@ -33,9 +36,9 @@ export default function Confirm() {
   return (
     <Content>
       <ul>
-        {confirmImages.map((data) => {
+        {confirmImages.map((data: ConfirmImage) => {
           const { key, image_url, tag } = data;
-          return <ConfirmItem key={key} image_key={key} image_url={image_url} tag={tag} />;
+          return <ConfirmItem key={key} imageKey={key} imageUrl={image_url} tag={tag} />;
         })}
       </ul>
     </Content>

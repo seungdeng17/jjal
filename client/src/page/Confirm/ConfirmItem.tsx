@@ -3,24 +3,24 @@ import { request } from '@util/api';
 import { DELETE_IMAGE_TYPE } from '@constant/type';
 
 type ConfirmItemProps = {
-  image_key: string;
-  image_url: string;
+  imageKey: string;
+  imageUrl: string;
   tag: string[];
 };
 
-export default function ConfirmItem({ image_key, image_url, tag }: ConfirmItemProps) {
+export default function ConfirmItem({ imageKey, imageUrl, tag }: ConfirmItemProps) {
   const onClickDelete = async () => {
     await request({
       url: '/admin/delete-image',
       method: 'delete',
-      params: { key: image_key, type: DELETE_IMAGE_TYPE.CONFIRM },
+      params: { key: imageKey, type: DELETE_IMAGE_TYPE.CONFIRM },
     });
   };
 
   return (
     <li>
       <ConfirmItemWrap>
-        <img src={image_url} alt="jjal-confirm-image" />
+        <img src={imageUrl} alt="jjal-confirm-image" />
         <TagWrap>
           {tag.map((data) => (
             <li key={data}>#{data}</li>
@@ -108,10 +108,9 @@ const ButtonWrap = styled.div`
   }
   .reject {
     border: 1px solid #bdc3c7;
-    color: #3182f6;
+    color: #636e72;
     background-color: #fff;
     :hover {
-      color: #636e72;
       background-color: #f1f2f6;
     }
   }
