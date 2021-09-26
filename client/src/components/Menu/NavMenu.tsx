@@ -63,5 +63,6 @@ const NavMenuContainer = styled.div`
   &.menu-close {
     transform: translateY(-80px);
     pointer-events: none;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0), 0 1px 6px 0 rgba(0, 0, 0, 0);
   }
 `;
