@@ -59,12 +59,10 @@ const NavMenuContainer = styled.div`
   align-items: center;
 
   &.menu-show {
-    opacity: 1;
     transform: translateY(0);
   }
   &.menu-close {
-    opacity: 0;
-    transform: translateY(-50px);
+    transform: translateY(-80px);
     pointer-events: none;
   }
 `;
