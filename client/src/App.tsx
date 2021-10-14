@@ -5,6 +5,7 @@ import useLogin from '@hook/useLogin';
 
 import Header from '@components/Header/Header';
 import Main from '@page/Main/Main';
+import Upload from '@page/Upload/Upload';
 import Confirm from '@page/Confirm/Confirm';
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={Main} />
+        <Route path="/upload" component={Upload} />
         <Route path="/confirm" component={Confirm} />
       </Switch>
     </>

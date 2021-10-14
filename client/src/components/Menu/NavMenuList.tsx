@@ -30,7 +30,7 @@ export default function NavMenuList({ onTrigger }: NavMenuListProps) {
 
   return (
     <NavMenuListWrap>
-      <MenuItem title="짤 등록" icon={<FiUpload />} onClick={() => onHistoryPush('/')} />
+      <MenuItem title="짤 등록" icon={<FiUpload />} onClick={() => onHistoryPush('/upload')} />
       {isAdmin && (
         <MenuItem title="등록 요청 목록" icon={<FiCheckCircle />} onClick={() => onHistoryPush('/confirm')} />
       )}
